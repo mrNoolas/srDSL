@@ -1,5 +1,6 @@
 from ev3dev2.motor import MoveTank, OUTPUT_A, OUTPUT_D, SpeedRPS, SpeedPercent, LargeMotor
 from time import sleep
+import random
 
 
 class movement:
@@ -281,6 +282,20 @@ class movement:
             return False
         
         return True
+    
+    def randomWalk(self):
+        # random rotation in direction
+        rot = random.randint(-6, 6) / 10
+        #print(rot)
+        result = self.m.safeRotate(rot, abs(rot))
+        #print("saferotate result: " + str(result))
+        
+        if result == 1:
+            # random forward unless collision
+            dr = random.randint(5, 20) / 10
+            self.m.forward(dr)
+        else:
+            self.m.backward(0.20) # 0.2 seems to be the ideal value here; it performs better than 0.15 and 0.25
     
     
     def __init__(self, vitals, utils):

@@ -20,7 +20,7 @@ class SRDSLGenerator extends AbstractGenerator {
 		val root = resource.allContents.head as Missions; 
 		if (root !== null) {
 			var path = "generated/" + resource.getURI().lastSegment + "/"
-			fsa.generateFile(path+"missions.py", PythonGenerator.toPython(root))       
+			fsa.generateFile(path+"main.py", PythonGenerator.toPython(root)) 
 		} 
 	}
 }

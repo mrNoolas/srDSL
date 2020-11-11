@@ -3,24 +3,24 @@ from vitals import vitals
 from checkColor import checkColor
 from movement import movement
 from threading import Thread
-from doMovements import doMovements
+from missionsList import missionsList
+from execFunctions import execFunctions
 from time import sleep
+import execMovements
 
 def main():
     u = utils()
     v = vitals(u)
-    m = movement(v, u) 
-    
-    move = doMovements(v,m)
-    c = checkColor(u)
-    
-    behaviors = [move,c]
-    Thread(target=go, args=(behaviors)).start()
-    Thread(target=doAction, args=(behaviors)).start()
+
+    missions = missionsList(movement(u, v)).missionSet
+    for mission in missions:
+        behaviors = [execMovements(missions["moves"]), checkConditions(missions["conditions"])]
+        Thread(target=scheduler, args=(behaviors)).start()
+        Thread(target=runner, args=(behaviors)).start()
     print("Shutting down...")
     return 0
         
-def go(behaviors):
+def scheduler(behaviors):
     activeBehavior = 0 #Standard = movement
     highest = 0 #Standard = movement
     behaviors[highest].active = True
@@ -47,7 +47,7 @@ def go(behaviors):
                     activeBehavior = i
         sleep(0.1)
                     
-def doAction(behaviors):
+def runner(behaviors):
     while not behaviors[2].foundAllColors:
         for i in range(len(behaviors)-1, -1, -1): 
             if behaviors[i].active:
