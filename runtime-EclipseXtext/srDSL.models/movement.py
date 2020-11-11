@@ -1,7 +1,5 @@
 from ev3dev2.motor import MoveTank, OUTPUT_A, OUTPUT_D, SpeedRPS, SpeedPercent, LargeMotor
-import random
 from time import sleep
-from arcade.color import USC_CARDINAL
 
 
 class movement:

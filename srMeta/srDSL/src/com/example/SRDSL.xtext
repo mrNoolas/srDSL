@@ -12,7 +12,7 @@ Mission: 'Mission:' name=ID
 
 Movement: 
 	// keep doing the things in the movement (iterate) until the condition is met; abort the movement if the condition is met.
-	movement += Move+ 'until' conditions += Condition+ 
+	movement += Move+ 'until' conditions += Condition ('and' conditions += Condition)*
 ;
 
 Move :
@@ -21,9 +21,9 @@ Move :
 
 Direction: ForwardForMove | {Direction} ForwardMove | BackwardForMove | LeftForMove | {Direction} LeftMove | RightForMove | {Direction} RightMove | {Direction} RandomMove
 ;
-ForwardForMove: 'forward' 'for' distance = INT;
+ForwardForMove: 'forward' 'for' distance = INT 'rotations';
 ForwardMove: 'forward';
-BackwardForMove: 'backward' 'for' distance = INT;
+BackwardForMove: 'backward' 'for' distance = INT 'rotations';
 LeftForMove: 'left' 'for' (degrees = INT 'degrees' | time = INT 'seconds');
 LeftMove: 'left';
 RightForMove: 'right' 'for' (degrees = INT 'degrees' | time = INT 'seconds');
@@ -40,9 +40,9 @@ DistanceConditionLT: 'distance' 'less' 'than' distance = INT;
 DistanceConditionGT: 'distance' 'greater' 'than' distance = INT;
 
 TouchCondition: TouchLeftCondition | TouchRightCondition | TouchBothCondition;
-enum Pressed: TRUE = 'is' | FALSE = 'is not';
-TouchLeftCondition: 'the' 'left' 'buffer' isPressed = Pressed 'pressed';
-TouchRightCondition: 'the' 'right' 'buffer' isPressed = Pressed 'pressed';
-TouchBothCondition: 'both' 'the' 'left' 'and' 'right' 'buffer' isPressed = Pressed 'pressed';
+enum Pressed: TRUE = 'buffer is' | FALSE = 'buffer is not';
+TouchLeftCondition: 'the' 'left' isPressed = Pressed 'pressed';
+TouchRightCondition: 'the' 'right' isPressed = Pressed 'pressed';
+TouchBothCondition: 'both' 'the' 'left' 'and' 'right' isPressed = Pressed 'pressed';
 
 ButtonPressCondition: 'the' 'user' 'presses' 'the' 'button';
