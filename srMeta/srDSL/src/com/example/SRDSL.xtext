@@ -16,11 +16,14 @@ Movement:
 
 Move :
 	// amount is the number of degrees for a 
-	'Move' Direction ('for' amount = INT 'degrees')('for' amount = INT '' )
+	'Move' dir = Direction
 ;
 
-Model:
-	greetings+=Greeting*;
-	
-Greeting:
-	'Hello' name=ID '!';
+
+enum Direction:
+	FORWARD = 'Forward for' amount = INT 'distance' |
+	BACKWARD = 'Backward for' amount = INT 'distance' | 
+	LEFT = 'Left for' amount = INT 'degrees' | 
+	RIGHT = 'Right for' amount = INT 'degrees'
+	RANDOM = 'Random for' amount = INT 'time'
+;
