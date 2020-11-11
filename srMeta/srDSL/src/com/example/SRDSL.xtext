@@ -24,9 +24,9 @@ Direction: ForwardForMove | {Direction} ForwardMove | BackwardForMove | LeftForM
 ForwardForMove: 'forward' 'for' distance = INT;
 ForwardMove: 'forward';
 BackwardForMove: 'backward' 'for' distance = INT;
-LeftForMove: 'left' 'for' degrees = INT;
+LeftForMove: 'left' 'for' (degrees = INT 'degrees' | time = INT 'seconds');
 LeftMove: 'left';
-RightForMove: 'right' 'for' degrees = INT;
+RightForMove: 'right' 'for' (degrees = INT 'degrees' | time = INT 'seconds');
 RightMove: 'right';
 RandomMove: 'randomly';
 
