@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: srDSL.ide
+Bundle-ManifestVersion: 2
+Bundle-Name: srDSL.ide
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: srDSL.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: srDSL,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

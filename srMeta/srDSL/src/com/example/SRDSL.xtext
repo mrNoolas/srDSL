@@ -1,0 +1,9 @@
+grammar com.example.SRDSL with org.eclipse.xtext.common.Terminals
+
+generate sRDSL "http://www.example.com/SRDSL"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';
