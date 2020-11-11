@@ -2,6 +2,23 @@ grammar com.example.SRDSL with org.eclipse.xtext.common.Terminals
 
 generate sRDSL "http://www.example.com/SRDSL"
 
+Missions: 'Missions' name=ID
+	missions += Mission+
+; 
+
+Mission: 'Mission:' name=ID
+	movement_sequence += Movement+
+;
+
+Movement: 
+	movement += Move+ 'until' condition = Condition
+;
+
+Move :
+	// amount is the number of degrees for a 
+	'Move' Direction ('for' amount = INT 'degrees')('for' amount = INT '' )
+;
+
 Model:
 	greetings+=Greeting*;
 	
