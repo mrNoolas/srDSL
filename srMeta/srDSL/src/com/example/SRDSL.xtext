@@ -20,10 +20,10 @@ Move :
 ;
 
 
-enum Direction:
-	FORWARD = 'Forward for' amount = INT 'distance' |
-	BACKWARD = 'Backward for' amount = INT 'distance' | 
-	LEFT = 'Left for' amount = INT 'degrees' | 
-	RIGHT = 'Right for' amount = INT 'degrees'
-	RANDOM = 'Random for' amount = INT 'time'
+Direction:
+	'Forward for' amount = INT 'distance' |
+	'Backward for' amount = INT 'distance' | 
+	'Left for' amount = INT 'degrees' | 
+	'Right for' amount = INT 'degrees' |
+	'Random for' amount = INT 'time'
 ;
