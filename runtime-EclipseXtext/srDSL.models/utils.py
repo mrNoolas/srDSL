@@ -5,7 +5,6 @@ from ev3dev2.sensor.lego import ColorSensor
 from ev3dev2.sensor.lego import UltrasonicSensor
 from ev3dev2._platform.ev3 import * 
 
-
 class utils:
     def int2SpeakColor(self, colornr):
         if colornr == 0:
