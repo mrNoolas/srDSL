@@ -50,7 +50,7 @@ class DSLFunctions:
             
     # =============== Conditions ===============
     def colorCondition (self, shouldFind):
-        color = self.u.lastColor
+        color = self.u.checkColor()
         if color != self.lastColor and color in shouldFind: 
             self.lastColor = color
             self.foundColours.append(color)
@@ -85,5 +85,6 @@ class DSLFunctions:
     def __init__(self, movement, utils):
         self.m = movement
         self.u = utils
+        self.lastColor = self.u.lastColor
     
         self.foundColours = []

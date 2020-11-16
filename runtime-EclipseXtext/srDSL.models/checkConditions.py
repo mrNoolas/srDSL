@@ -2,18 +2,23 @@
 
 class checkConditions:        
     def takeControl(self):
+        print("Test to take control")
         # check the list of movements
         for c in self.conditions:
             if c[0](**c[1]):
+                print("Removing a condition")
                 self.conditions.remove(c)
-        return len(self.actions) > 0
+                return True
+        return False
                         
     def action(self):
         while (not self.suppressed) and self.active: 
-            self.isDone = True
+            allDone = True
             for c in self.conditions:
                 if not c[0](**c[1]):      
-                    self.isDone = False                
+                    allDone = False
+            if allDone:
+                self.isDone = True           
             self.active = False
                 
     def suppress(self):

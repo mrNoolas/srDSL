@@ -18,6 +18,5 @@ class execMovements:
     
     def __init__(self, actions):
         self.actions = actions
-        
         self.suppressed = False
         self.active = False

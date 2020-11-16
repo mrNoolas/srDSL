@@ -11,15 +11,17 @@ from time import sleep
 def main():
     u = utils()
     v = vitals(u)
-    m = movementController(u, v)
+    m = movementController(v, u)
     f = DSLFunctions(m, u)
 
     missions = missionsList(f).getMissionSet()
     for mission in missions:
         for movement in missions[mission]:
-            behaviors = [execMovements(movement["moves"]), checkConditions(movement["conditions"])]
-            Thread(target=scheduler, args=(behaviors)).start()
-            Thread(target=runner, args=(behaviors)).start()
+            e = execMovements(movement["moves"])
+            c = checkConditions(movement["conditions"])
+            behaviors = [e, c]
+            Thread(target=scheduler, args=[behaviors]).start()
+            Thread(target=runner, args=[behaviors]).start()
     print("Shutting down...")
     return 0
         

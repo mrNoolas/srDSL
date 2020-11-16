@@ -233,7 +233,6 @@ class movementController:
         if rotations > self.one80Rotations:
             direction *= -1
             rotations %= self.one80Rotations
-        
         if self.v.onBorder() :
             return self.__onBorderSafeRotate(direction, rotations)
         else :
@@ -287,15 +286,15 @@ class movementController:
         # random rotation in direction
         rot = random.randint(-6, 6) / 10
         #print(rot)
-        result = self.m.safeRotate(rot, abs(rot))
+        result = self.safeRotate(rot, abs(rot))
         #print("saferotate result: " + str(result))
         
         if result == 1:
             # random forward unless collision
             dr = random.randint(5, 20) / 10
-            self.m.forward(dr)
+            self.forward(dr)
         else:
-            self.m.backward(0.20) # 0.2 seems to be the ideal value here; it performs better than 0.15 and 0.25
+            self.backward(0.20) # 0.2 seems to be the ideal value here; it performs better than 0.15 and 0.25
     
     
     def __init__(self, vitals, utils):
