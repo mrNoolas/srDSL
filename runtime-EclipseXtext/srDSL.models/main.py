@@ -11,8 +11,10 @@ from time import sleep
 def main():
     u = utils()
     v = vitals(u)
+    m = movement(u, v)
+    f = DSLFunctions(m, u)
 
-    missions = missionsList(DSLFunctions(movement(u, v), u)).missionSet
+    missions = missionsList(f).missionSet
     for mission in missions:
         behaviors = [execMovements(mission["moves"]), checkConditions(mission["conditions"])]
         Thread(target=scheduler, args=(behaviors)).start()
