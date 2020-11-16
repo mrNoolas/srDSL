@@ -23,6 +23,7 @@ class DSLFunctions:
             self.m.safeRotate(-1, angle)
         elif unit == "seconds":
             # TODO: implement
+            return
         
     def leftMove(self):
         while True:
@@ -33,6 +34,7 @@ class DSLFunctions:
             self.m.safeRotate(1, angle)
         elif unit == "seconds":
             # TODO: implement
+            return
         
     def rightMove(self):
         while True:
@@ -73,11 +75,12 @@ class DSLFunctions:
         elif comparator == "right":
             return self.u.checkTouchR()
         elif comparator == "both":
-            return self.u.checkTouchL() and return self.u.checkTouchR()
+            return self.u.checkTouchL() and self.u.checkTouchR()
         return False
     
     def buttonPressCondition(self):
         # TODO: implement
+        return
     
     def init(self, movement, utils):
         self.m = movement
