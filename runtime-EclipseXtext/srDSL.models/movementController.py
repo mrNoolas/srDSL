@@ -3,7 +3,7 @@ from time import sleep
 import random
 
 
-class movement:
+class movementController:
     def canMoveForward(self, useUltrasonic = True):
         if useUltrasonic:
             return not (self.v.onBorder() or self.v.isColliding() or self.v.isCloseToColliding())

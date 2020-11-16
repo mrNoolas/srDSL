@@ -1,6 +1,6 @@
 from utils import utils
 from vitals import vitals
-from movement import movement
+from movementController import movementController
 from threading import Thread
 from missionsList import missionsList
 from execMovements import execMovements
@@ -11,20 +11,21 @@ from time import sleep
 def main():
     u = utils()
     v = vitals(u)
-    m = movement(u, v)
+    m = movementController(u, v)
     f = DSLFunctions(m, u)
 
-    missions = missionsList(f).missionSet
+    missions = missionsList(f).getMissionSet()
     for mission in missions:
-        behaviors = [execMovements(mission["moves"]), checkConditions(mission["conditions"])]
-        Thread(target=scheduler, args=(behaviors)).start()
-        Thread(target=runner, args=(behaviors)).start()
+        for movement in missions[mission]:
+            behaviors = [execMovements(movement["moves"]), checkConditions(movement["conditions"])]
+            Thread(target=scheduler, args=(behaviors)).start()
+            Thread(target=runner, args=(behaviors)).start()
     print("Shutting down...")
     return 0
         
 def scheduler(behaviors):
-    activeBehavior = 0 #Standard = movement
-    highest = 0 #Standard = movement
+    activeBehavior = 0 #Standard = movementController
+    highest = 0 #Standard = movementController
     behaviors[highest].active = True
     while not behaviors[1].isDone: 
         #print("MASTER: Current running behavior " + str(activeBehavior))

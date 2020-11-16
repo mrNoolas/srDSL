@@ -82,7 +82,7 @@ class DSLFunctions:
         # TODO: implement
         return
     
-    def init(self, movement, utils):
+    def __init__(self, movement, utils):
         self.m = movement
         self.u = utils
     
