@@ -22,5 +22,9 @@ execMovements and checkConditions are iterated based on the current movement and
 
 
 ## DSL overview
-The DSL is specified in such a way that it adheres closely to natural language. We chose to keep the current possibilities for the rover limited, as this allows for easier implementation. THe current languege nonetheless gives quite some expressiveness for the rover.
+The DSL is specified in such a way that it adheres closely to natural language. We chose to keep the current possibilities for the rover limited, as this allows for easier implementation. THe current languege nonetheless gives quite some expressiveness for the rover.
 
+### Unfinished
+We had some trouble with defining commands that do not have parameters. We have a move forward option that should run infinitely (until the condition is met) and a move forward for a set distance. We could not get the infinite version to work properly with our current code. 
+
+We do have some ideas on what we could try, but after spending many hours our time has unfortunately run out.
