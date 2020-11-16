@@ -4,6 +4,7 @@ import com.example.sRDSL.ColorCondition
 import com.example.sRDSL.ForwardForMove
 import com.example.sRDSL.Missions
 import com.example.sRDSL.RightForMove
+import com.example.sRDSL.Condition
 
 class PythonGenerator {
 	def static toPython(Missions root)'''
@@ -28,9 +29,9 @@ class PythonGenerator {
                     	«ENDFOR» 
                     	]]
                     "conditions": [[
-                    	«FOR condition : movement.conditions»
-                    		«condition2Code(condition)»
-                    	«ENDFOR»
+«««                    	«FOR condition : movement.conditions»
+«««                    		«condition2Code(condition)»
+«««                    	«ENDFOR»
                     self.f.colorCondition, {"shouldFind": [1]}
                     ]]
                 },
@@ -45,9 +46,9 @@ class PythonGenerator {
  	def static dispatch move2Code(RightForMove move)'''
  		self.f.rightForMove, {"angle": "«move.degrees»", "unit": "«IF move.degrees != 0»degrees«ELSE»rotations«ENDIF»"},'''
  		
- 	def static dispatch move2Code(RandomMove move)'''
- 		self.f.randomWalk, {},'''
+// 	def static dispatch move2Code(RandomMove move)'''
+// 		self.f.randomWalk, {},'''
  		
- 	def static dispatch condition2Code(ColorCondition colorCond)'''
- 		self.f.colorCondition, {"shouldFind": [«IF colorCond.color == "BLACK"»1«ENDIF»]}'''
+ 	def static dispatch condition2Code(ColorCondition condition)'''
+ 		self.f.colorCondition, {"shouldFind": [«IF condition.color == "BLACK"»1«ENDIF»]}'''
 }
