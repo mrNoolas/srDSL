@@ -40,7 +40,7 @@ class DSLFunctions:
         while True:
             self.m.safeRotate(1, 0.2)
         
-    def randomMove(self):
+    def randomStep(self):
         self.m.randomStep()
         
     def randomWalk(self):
@@ -56,7 +56,8 @@ class DSLFunctions:
             self.foundColours.append(color)
             
             if (all(c in self.foundColours for c in shouldFind)):
-                shouldFind = [] # reset the list for the next task
+                self.foundColours = [] # reset the list for the next task
+                self.lastColor = None
                 return True
         return False
          

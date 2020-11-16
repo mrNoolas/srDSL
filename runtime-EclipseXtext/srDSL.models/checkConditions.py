@@ -2,13 +2,14 @@
 
 class checkConditions:        
     def takeControl(self):
-        print("Test to take control")
         # check the list of movements
         for c in self.conditions:
             if c[0](**c[1]):
-                print("Removing a condition")
                 self.conditions.remove(c)
                 return True
+            
+        if len(self.conditions) == 0:
+            self.isDone = True
         return False
                         
     def action(self):

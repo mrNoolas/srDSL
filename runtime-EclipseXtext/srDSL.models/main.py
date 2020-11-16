@@ -22,6 +22,10 @@ def main():
             behaviors = [e, c]
             Thread(target=scheduler, args=[behaviors]).start()
             Thread(target=runner, args=[behaviors]).start()
+            
+            while not behaviors[0].isDone and not behaviors[1].isDone:
+                sleep(0.5)
+                
     print("Shutting down...")
     return 0
         
@@ -29,7 +33,7 @@ def scheduler(behaviors):
     activeBehavior = 0 #Standard = movementController
     highest = 0 #Standard = movementController
     behaviors[highest].active = True
-    while not behaviors[1].isDone: 
+    while not behaviors[0].isDone and not behaviors[1].isDone: 
         #print("MASTER: Current running behavior " + str(activeBehavior))
         #print("Colors to be checked:")
         #print(behaviors[1].colorsToFind)
@@ -53,7 +57,7 @@ def scheduler(behaviors):
         sleep(0.1)
                     
 def runner(behaviors):
-    while not behaviors[1].isDone:
+    while not behaviors[0].isDone and not behaviors[1].isDone:
         for i in range(len(behaviors)-1, -1, -1): 
             if behaviors[i].active:
                 #print("MASTER: Thread runs behavior " + str(i))
