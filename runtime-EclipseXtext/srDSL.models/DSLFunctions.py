@@ -5,18 +5,10 @@ class DSLFunctions:
     def forwardForMove(self, distance, unit):
         if unit == "rotations" and distance > 0:
             self.m.forward(distance)
-    
-    def forwardMove(self):
-        while True:
-            self.m.forward(0.2)
             
     def backwardForMove(self, distance, unit):
         if unit == "rotations" and distance > 0:
             self.m.forward(distance)
-        
-    def backwardMove(self):
-        while True:
-            self.m.backward(0.2)
         
     def leftForMove(self, angle, unit):
         if unit == "rotations":
@@ -25,10 +17,6 @@ class DSLFunctions:
             # TODO: implement
             return
         
-    def leftMove(self):
-        while True:
-            self.m.safeRotate(-1, 0.2)
-        
     def rightForMove(self, angle, unit):
         if unit == "rotations":
             self.m.safeRotate(1, angle)
@@ -36,16 +24,8 @@ class DSLFunctions:
             # TODO: implement
             return
         
-    def rightMove(self):
-        while True:
-            self.m.safeRotate(1, 0.2)
-        
-    def randomMove(self):
+    def randomStep(self):
         self.m.randomStep()
-        
-    def randomWalk(self):
-        while True:
-            self.m.randomStep()
             
             
     # =============== Conditions ===============
@@ -56,7 +36,8 @@ class DSLFunctions:
             self.foundColours.append(color)
             
             if (all(c in self.foundColours for c in shouldFind)):
-                shouldFind = [] # reset the list for the next task
+                self.foundColours = [] # reset the list for the next task
+                self.lastColor = None
                 return True
         return False
          
