@@ -1,20 +1,20 @@
 from utils import utils
 from vitals import vitals
-from checkColor import checkColor
 from movement import movement
 from threading import Thread
 from missionsList import missionsList
-from execFunctions import execFunctions
+from execMovements import execMovements
+from checkConditions import checkConditions
+from DSLFunctions import DSLFunctions
 from time import sleep
-import execMovements
 
 def main():
     u = utils()
     v = vitals(u)
 
-    missions = missionsList(movement(u, v)).missionSet
+    missions = missionsList(DSLFunctions(movement(u, v), u)).missionSet
     for mission in missions:
-        behaviors = [execMovements(missions["moves"]), checkConditions(missions["conditions"])]
+        behaviors = [execMovements(mission["moves"]), checkConditions(mission["conditions"])]
         Thread(target=scheduler, args=(behaviors)).start()
         Thread(target=runner, args=(behaviors)).start()
     print("Shutting down...")
@@ -24,7 +24,7 @@ def scheduler(behaviors):
     activeBehavior = 0 #Standard = movement
     highest = 0 #Standard = movement
     behaviors[highest].active = True
-    while not behaviors[2].foundAllColors: 
+    while not behaviors[1].isDone: 
         #print("MASTER: Current running behavior " + str(activeBehavior))
         #print("Colors to be checked:")
         #print(behaviors[1].colorsToFind)
@@ -48,7 +48,7 @@ def scheduler(behaviors):
         sleep(0.1)
                     
 def runner(behaviors):
-    while not behaviors[2].foundAllColors:
+    while not behaviors[1].isDone:
         for i in range(len(behaviors)-1, -1, -1): 
             if behaviors[i].active:
                 #print("MASTER: Thread runs behavior " + str(i))

@@ -283,7 +283,7 @@ class movement:
         
         return True
     
-    def randomWalk(self):
+    def randomStep(self):
         # random rotation in direction
         rot = random.randint(-6, 6) / 10
         #print(rot)
